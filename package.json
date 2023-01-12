@@ -10,5 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^12.3.0"
+  },
+  "dependencies": {
+    "cypress-wait-until": "^1.7.2",
+    "dayjs": "^1.11.7"
   }
 }
