@@ -43,6 +43,11 @@ export class homePageObjects {
         this.getElement_flights_roundTrip_returningDate().should('be.visible');
     }
 
+    validateFlightsOneWayReturnNotVisible(): void {
+        this.getElement_flights_headerTabs_oneWay().click();
+        this.getElement_flights_roundTrip_returningDate().should('not.exist');
+    }
+
     preferredClassSelection(): void {
         this.getElement_flights_preferredClass().click();
         this.getElement_flights_preferredClass_firstClass().click({force:true});
@@ -83,6 +88,10 @@ export class homePageObjects {
 
     private getElement_flights_headerTabs_roundTrip(): Cypress.Chainable {
         return cy.get('.uitk-tab-text').contains('Roundtrip');
+    }
+
+    private getElement_flights_headerTabs_oneWay(): Cypress.Chainable {
+        return cy.get('.uitk-tab-text').contains('One-way');
     }
 
     private getElement_flights_roundTrip_leavingFrom(): Cypress.Chainable {

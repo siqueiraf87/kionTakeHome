@@ -29,4 +29,9 @@ describe('Kion QA Take Home Navigating Expedia', () => {
         homepage.flightsTabDefaults();
         homepage.preferredClassSelection();
     });
+
+    it.only('Test Case 4: Validate on "One-Way" selection, returning label no longer present', () => {
+        homepage.navigateToFlights();
+        homepage.validateFlightsOneWayReturnNotVisible();
+    })
 })
