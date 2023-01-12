@@ -3,6 +3,13 @@ import * as dayjs from "dayjs";
 
 export class homePageObjects {
 
+    navigateToStays(): void {
+        this.getElement_Stays().click();
+    }
+    navigateToFlights(): void {
+        this.getElement_Flights().click();
+    }
+
     destinationSelector(destination: string): void {
         this.getElement_goingToDestination()
             .should('be.visible')
@@ -28,6 +35,28 @@ export class homePageObjects {
         this.getElement_searchButton().click();
     }
 
+    flightsTabDefaults(): void {
+        this.getElement_flights_headerTabs_roundTrip().parent().parent().should('have.class', 'active');
+        this.getElement_flights_roundTrip_leavingFrom().should('be.visible');
+        this.getElement_flights_roundTrip_goingTo().should('be.visible');
+        this.getElement_flights_roundTrip_departingDate().should('be.visible');
+        this.getElement_flights_roundTrip_returningDate().should('be.visible');
+    }
+
+    preferredClassSelection(): void {
+        this.getElement_flights_preferredClass().click();
+        this.getElement_flights_preferredClass_firstClass().click({force:true});
+        this.getElement_flights_preferredClass().should('have.text', 'First class');
+    }
+
+    private getElement_Stays(): Cypress.Chainable   {
+        return cy.get('.uitk-tabs-container').contains('Stays');
+    }
+
+    private getElement_Flights(): Cypress.Chainable {
+        return cy.get('.uitk-tabs-container').contains('Flights');
+    }
+
     private getElement_goingToDestination(): Cypress.Chainable {
         return cy.get('#location-field-destination-menu');
     }
@@ -50,6 +79,34 @@ export class homePageObjects {
 
     private getElement_searchButton(): Cypress.Chainable {
         return cy.get('[data-testid="submit-button"]');
+    }
+
+    private getElement_flights_headerTabs_roundTrip(): Cypress.Chainable {
+        return cy.get('.uitk-tab-text').contains('Roundtrip');
+    }
+
+    private getElement_flights_roundTrip_leavingFrom(): Cypress.Chainable {
+        return cy.get('[data-stid="location-field-leg1-origin-menu-trigger"]');
+    }
+
+    private getElement_flights_roundTrip_goingTo(): Cypress.Chainable {
+        return cy.get('[data-stid="location-field-leg1-destination-menu-trigger"]');
+    }
+
+    private getElement_flights_roundTrip_departingDate(): Cypress.Chainable {
+        return cy.get('.uitk-field-label').contains('Departing');
+    }
+
+    private getElement_flights_roundTrip_returningDate(): Cypress.Chainable {
+        return cy.get('.uitk-field-label').contains('Returning');
+    }
+
+    private getElement_flights_preferredClass(): Cypress.Chainable {
+        return cy.get('[data-testid="preferred-class-input-trigger"]')
+    }
+
+    private getElement_flights_preferredClass_firstClass(): Cypress.Chainable {
+        return cy.get('.uitk-menu-list-item-label').contains('First class');
     }
 
 }

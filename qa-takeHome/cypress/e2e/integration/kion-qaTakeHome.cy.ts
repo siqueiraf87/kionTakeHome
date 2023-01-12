@@ -12,15 +12,21 @@ describe('Kion QA Take Home Navigating Expedia', () => {
     });
 
     it('Test Case 1: Check-in for a week Universal Orlando Resort', () => {
-        cy.get('.uitk-tabs-container').contains('Stays').click();
+        homepage.navigateToStays();
         homepage.destinationSelector('Universal Orlando Resort');
         homepage.checkInOutDate();
     });
 
-    it.only('Test Case 2: On SERP Travelers Dropdown, select two adults and two children, and then set the children’s ages to 8 and 10', () => {
-        cy.get('.uitk-tabs-container').contains('Stays').click();
+    it('Test Case 2: On SERP Travelers Dropdown, select two adults and two children, and then set the children’s ages to 8 and 10', () => {
+        homepage.navigateToStays();
         homepage.destinationSelector('Universal Orlando Resort');
         homepage.checkInOutDate();
         searchResults.addOccupants();
+    });
+
+    it('Test Case 3: From Homepage verify defaults are selected on flights tab page load', () => {
+        homepage.navigateToFlights();
+        homepage.flightsTabDefaults();
+        homepage.preferredClassSelection();
     });
 })
