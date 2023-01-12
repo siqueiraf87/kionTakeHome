@@ -54,6 +54,16 @@ export class homePageObjects {
         this.getElement_flights_preferredClass().should('have.text', 'First class');
     }
 
+    homepageHeaderTabsValidation(): void {
+        const numberOfTabs = 6;
+
+        for (let i = 1; i <= numberOfTabs; i+=1) {
+            cy.get(`.uitk-card > .uitk-tabs-container > .uitk-tabs > :nth-child(${i}) > .uitk-tab-anchor > .uitk-tab-text`).click().then(() => {
+                this.getElement_searchButton().should('be.visible');
+            });
+        }
+    }
+
     private getElement_Stays(): Cypress.Chainable   {
         return cy.get('.uitk-tabs-container').contains('Stays');
     }

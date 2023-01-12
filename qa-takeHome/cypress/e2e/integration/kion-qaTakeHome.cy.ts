@@ -30,8 +30,13 @@ describe('Kion QA Take Home Navigating Expedia', () => {
         homepage.preferredClassSelection();
     });
 
-    it.only('Test Case 4: Validate on "One-Way" selection, returning label no longer present', () => {
+    it('Test Case 4: Validate on "One-Way" selection, returning label no longer present', () => {
         homepage.navigateToFlights();
         homepage.validateFlightsOneWayReturnNotVisible();
-    })
+    });
+
+    it('Test Case 5: Write a for loop that clicks on each of the homepage header tabs and validate that the Search button appears after clicking the tab', () => {
+        homepage.navigateToStays();
+        homepage.homepageHeaderTabsValidation();
+    });
 })
